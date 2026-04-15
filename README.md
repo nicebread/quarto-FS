@@ -109,7 +109,13 @@ Text
 </div>
 ```
 
-If the only text on the slide is the title, and it needs to be centered, use this:
+If the only text on the slide is the title, and it needs to be centered, consider using a top-level slide:
+
+```
+# Top-Level Slide (for a new Chapter)
+```
+
+Otherwise, use this:
 
 ```
 <div style="display: flex; align-items: center; justify-content: center; height: 600px;">
@@ -138,7 +144,7 @@ Text
 </div>
 ```
 
-To split the text, use the `<br>` command:
+To add a line break or a blank line, use the `<br>` command:
 
 ```
 This text is too long <br> and it needs to be split.
@@ -213,18 +219,14 @@ If the text in the footer is too long, shorten it.
 Before:
 
 ```
-::: {.footer}
-
-                                                    
+::: {.footer}                                               
 Benjamin, D. J., Berger, J. O., Johannesson, M., Nosek, B. A., Wagenmakers, E. J., Berk, R., ... & Cesarini, D. (2018). Redefine statistical significance. Nature Human Behaviour, 2(1), 6. doi:10.1038/s41562-017-0189-z
 
 
 Bondareva, D. (2013). Introduction to Power Analysis. Presentation for EPSE 482 Introduction to Statistics for Research in Education. Slides available [slideshare.net/dbondareva/introduction-to-power-analysis](slideshare.net/dbondareva/introduction-to-power-analysis)
                                                     
                                                     
-Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A., Argamon, S. E., ... & Buchanan, E. M. (2018). Justify your alpha. Nature Human Behaviour, 2, 168-171. doi: 10.1038/s41562-018-0311-x
-
-                                                    
+Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A., Argamon, S. E., ... & Buchanan, E. M. (2018). Justify your alpha. Nature Human Behaviour, 2, 168-171. doi: 10.1038/s41562-018-0311-x                                               
 :::
 
 ```
@@ -233,11 +235,9 @@ After (without line break, shorter; set the link to the doi):
 ```
 ::: {.footer}
                                                     
-::: {.smaller}
-                                                    
+::: {.smaller}                                              
 Benjamin et al. (2018). Redefine statistical significance. doi:[10.1038/s41562-017-0189-z]([10.1038/s41562-017-0189-z]()); Lakens et al. (2018). Justify your alpha.
- doi:[10.1038/s41562-018-0311-x](https://pure.tue.nl/ws/portalfiles/portal/119109470/Lakens_et_al._2018_Justify_your_alpha.pdf)
-                                                    
+ doi:[10.1038/s41562-018-0311-x](https://pure.tue.nl/ws/portalfiles/portal/119109470/Lakens_et_al._2018_Justify_your_alpha.pdf)                             
 :::
                                                     
 :::
@@ -246,7 +246,7 @@ Benjamin et al. (2018). Redefine statistical significance. doi:[10.1038/s41562-0
 
 **Example for image source**:
 
-When you use an external image, always give a link to the original location and state the license. From the Creative Commons licenses, only CC-BY, CC-BY-SA, or CC0 can be included in Open Educational Materials.
+When you use an external image, always give a link to the original location and state the license. From the Creative Commons licenses, only CC-BY, CC-BY-SA, or CC0 can be included in my Open Educational Materials.
 
 ```
 ::: footer
@@ -265,7 +265,7 @@ If many references are on one slide, you can "distribute" them across the footer
 
 ---
 
-### Images
+## Images
 
 When shrinking images, only use *either* `height=???px` *or* `width=???px` (otherwise the aspect ratio of the image is changed).
 
@@ -280,7 +280,52 @@ Add a drop-shadow to images with the `.ds` class:
 ![](img/forestplot.png){.ds}
 ```
 
-# Troubleshooting: How to resolve merge conflicts after pulling
+## Mermaid diagrams
+
+Simple diagrams can be done in Mermaid.
+For creating the diagrams, use the interactive editor: <https://mermaid.ai/live>
+
+E.g.:
+
+````
+```{mermaid}
+flowchart LR
+  T(Theory)
+  P(Phenomena)
+  D(Data)
+  
+  T -- "Explanation" --> P
+  P -- "Abduction" --> T
+  P -- "Prediction" --> D
+  D -- "Generalization" --> P
+```
+````
+
+Add styling options on top: Control the figure width; apply a certain theme
+
+````
+```{mermaid}
+%%| fig-width: 10
+%%{
+  init: {
+    'theme': 'base',
+    'flowchart': { 'curve': 'natural' }
+  }
+}%%
+flowchart LR
+  T(Theory)
+  P(Phenomena)
+  D(Data)
+  
+  T -- "Explanation" --> P
+  P -- "Abduction" --> T
+  P -- "Prediction" --> D
+  D -- "Generalization" --> P
+```
+````
+
+
+## Troubleshooting: How to resolve merge conflicts after pulling
 
 1. Locally resolve the merge conflict:
 
